@@ -12,4 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap.min
  */
+@import "../../../vendor/assets/components/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+@import "../../../vendor/assets/components/bootstrap-sass/assets/stylesheets/bootstrap";
