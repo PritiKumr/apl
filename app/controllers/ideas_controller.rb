@@ -1,10 +1,12 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :check_signin, only: [:index, :new, :show, :create]
 
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.all
+    @user = current_user
+    @ideas = Idea.mounted(current_user.id)
   end
 
   # GET /ideas/1
@@ -25,10 +27,10 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = Idea.new(idea_params)
-
+    @idea.user_id = current_user.id
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Idea was successfully created.' }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :new }
@@ -62,6 +64,15 @@ class IdeasController < ApplicationController
   end
 
   private
+
+    def check_signin
+      if !user_signed_in?
+        @message = "Please login before continuing."
+        respond_to do |format|
+          format.html { redirect_to new_user_session_path, :notice => @message }
+        end
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_idea
       @idea = Idea.find(params[:id])

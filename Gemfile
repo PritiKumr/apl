@@ -7,6 +7,7 @@ gem 'rails', '4.2.3'
 gem 'sqlite3'
 gem 'mysql2', '0.3.19'
 gem 'devise', '3.5.1'
+gem 'react-rails', '~> 1.4.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
