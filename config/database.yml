@@ -35,12 +35,6 @@ test:
   encoding: utf8
 
 production:
-  adapter: mysql2
-  database: shrinkpro
-  username: skcript
-  password: Skcr1pt
-  socket: /var/run/mysqld/mysqld.sock
-  host: localhost
-  pool: 25
-  timeout: 50000000
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
