@@ -6,12 +6,14 @@ class IdeasController < ApplicationController
   # GET /ideas.json
   def index
     @user = current_user
-    @ideas = Idea.mounted(current_user.id)
+    @ideas = Idea.mounted(current_user.id).order('created_at DESC')
   end
 
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    @name = @idea.picture_identifier
+    @user = current_user
   end
 
   # GET /ideas/new
@@ -28,6 +30,8 @@ class IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
     @idea.user_id = current_user.id
+    @idea.picture = params[:picture]
+    
     respond_to do |format|
       if @idea.save
         format.html { redirect_to root_path, notice: 'Idea was successfully created.' }

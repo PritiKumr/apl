@@ -55,19 +55,12 @@
       <hr>
       <% @ideas.each do |v| %>
       <% data = v.created_at.strftime("%d %b %Y, %H:%M") %>
-        <%= react_component "AllPosts", {name: v.name, content: v.description, date: data} %>
+        <%= react_component "AllPosts", {name: v.name, content: v.description, date: data, id: v.id} %>
       <% end %>
-      <h4>Leave a Comment:</h4>
-      <form role="form">
-        <div class="form-group">
-          <textarea class="form-control" rows="3" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
       <br><br>
       
       
     </div>
   </div>
 </div>
-<%= link_to 'New Idea', new_idea_path %>
+

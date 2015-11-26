@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<div class="col-md-3 col-sm-4">
+		<%= image_tag("/uploads/#{@name}", :class => "img-responsive") %>
+
+</div>
+
 <p>
   <strong>Name:</strong>
   <%= @idea.name %>
@@ -9,7 +14,10 @@
   <strong>Description:</strong>
   <%= @idea.description %>
 </p>
+ 
+ <% react_component "Comments", {news: "hello"} %>
 
 
-<%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>
+
+<%= link_to 'Edit', edit_idea_path(@idea), :class => "btn btn-flat waves-attach waves-light waves-effect" %> |
+<%= link_to 'Back', ideas_path, :class => "btn btn-flat waves-attach waves-light waves-effect" %>

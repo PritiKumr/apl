@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  get 'comments/new'
+
+  get 'comments/show'
+
+  get 'comments/create'
+
+  get 'comments/index'
+
   devise_for :users
   resources :ideas
   # The priority is based upon order of creation: first created -> highest priority.
