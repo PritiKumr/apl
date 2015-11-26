@@ -5,29 +5,37 @@
     <div class="col-sm-3">
 		<%= image_tag("/uploads/#{@name}", :class => "img-responsive") %>
 	</div>
+
 	
-<div class="col-sm-9">
-<p>
-  <strong>Name:</strong>
-  <%= @idea.name %>
-</p>
+	
+	
+	
+	<div class="col-sm-9">
+	<p>
+	  <strong>Name:</strong>
+	  <%= @idea.name %>
+	</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @idea.description %>
-</p>
- 
- <%= react_component "Comments", {} %>
+	<p>
+	  <strong>Description:</strong>
+	  <%= @idea.description %>
+	</p>
+	 
+	 <%= react_component "Comments", {id: @idea.id} %>
 
- <% @comment.each do |c| %>
- 	<% data = c.created_at.strftime("%d %b %Y, %H:%M") %>
- 	<%= react_component "FetchComment", {comment: c, data: data} %>
- <% end %>
- <tr>
- <tr>
+	 <% @comment.each do |c| %>
+	 	<% data = c.created_at.strftime("%d %b %Y, %H:%M") %>
+	 	<%= react_component "FetchComment", {comment: c, data: data} %>
+	 <% end %>
+	 <tr>
+	 <tr>
+	</div>
 </div>
 </div>
-</div>
+
+<div class="col-sm-5">
+		<%= button_to "Delete Post", {:controller => "ideas", :action => 'destroy', :id => @idea.id}, :confirm => "Are you sure? ", :method => :delete %>
+		</div>
 
 
 <%= link_to 'Update', edit_idea_path(@idea), :class => "btn btn-flat waves-attach waves-light waves-effect" %> |

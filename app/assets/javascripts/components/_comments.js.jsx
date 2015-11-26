@@ -11,7 +11,8 @@ var Comments = React.createClass({
 		var formData = this.refs.textarea.value
 		$.ajax({
 			data: {
-                    path: formData
+                    path: formData,
+                    id: this.props.id
                 },
 			url: '/comments/create',
 			type: "POST",
@@ -35,8 +36,8 @@ var Comments = React.createClass({
         		</div>
         		<button type="submit" className="btn btn-success">Submit</button>
       		</form>
+
       		</div>
-      		
 			)
 	}
 });

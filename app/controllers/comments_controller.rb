@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   before_action :check_signin, only: [:index, :new, :show, :create]
 
   def new
@@ -13,6 +12,7 @@ class CommentsController < ApplicationController
   	@comment = Comment.new
     @comment.text = params[:path]
   	@comment.user_id = current_user.id
+    @comment.post_id = params[:id]
   	@comment.save
   end
 

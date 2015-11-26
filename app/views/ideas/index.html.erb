@@ -14,9 +14,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="/admin">Admin Panel</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
@@ -55,7 +53,7 @@
       <hr>
       <% @ideas.each do |v| %>
       <% data = v.created_at.strftime("%d %b %Y, %H:%M") %>
-        <%= react_component "AllPosts", {v: v, date: data} %>
+        <%= react_component "AllPosts", {id: v.id, date: data, name: v.name, text: v.description} %>
       <% end %>
       <br><br>
       
