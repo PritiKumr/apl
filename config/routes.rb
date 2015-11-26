@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'comments/show'
 
-  get 'comments/create'
+  post 'comments/create'
 
   get 'comments/index'
 

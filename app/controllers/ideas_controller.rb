@@ -14,6 +14,7 @@ class IdeasController < ApplicationController
   def show
     @name = @idea.picture_identifier
     @user = current_user
+    @comment = Comment.comments(@idea.id).order('created_at DESC')
   end
 
   # GET /ideas/new

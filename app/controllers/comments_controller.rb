@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+
+  before_action :check_signin, only: [:index, :new, :show, :create]
+
   def new
   	@comment = Comment.new
   end
@@ -7,15 +10,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-  	@comment = Comment.new(comment_params)
+  	@comment = Comment.new
+    @comment.text = params[:path]
   	@comment.user_id = current_user.id
-  	respond_to do |format|
-      if @comment.save
-        format.html { redirect_to root_path, notice: 'Comment was successfully added.' }
-      else
-        format.html { render :new }
-      end
-    end
+  	@comment.save
   end
 
   def index
@@ -26,4 +24,14 @@ class CommentsController < ApplicationController
   	def comment_params
       params.require(:comment).permit(:comment_text)
     end
+
+    def check_signin
+      if !user_signed_in?
+        @message = "Please login before continuing."
+        respond_to do |format|
+          format.html { redirect_to new_user_session_path, :notice => @message }
+        end
+      end
+    end
+
 end

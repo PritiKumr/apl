@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<div class="col-md-3 col-sm-4">
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3">
 		<%= image_tag("/uploads/#{@name}", :class => "img-responsive") %>
-
-</div>
-
+	</div>
+	
+<div class="col-sm-9">
 <p>
   <strong>Name:</strong>
   <%= @idea.name %>
@@ -15,9 +17,18 @@
   <%= @idea.description %>
 </p>
  
- <% react_component "Comments", {news: "hello"} %>
+ <%= react_component "Comments", {} %>
+
+ <% @comment.each do |c| %>
+ 	<% data = c.created_at.strftime("%d %b %Y, %H:%M") %>
+ 	<%= react_component "FetchComment", {comment: c, data: data} %>
+ <% end %>
+ <tr>
+ <tr>
+</div>
+</div>
+</div>
 
 
-
-<%= link_to 'Edit', edit_idea_path(@idea), :class => "btn btn-flat waves-attach waves-light waves-effect" %> |
-<%= link_to 'Back', ideas_path, :class => "btn btn-flat waves-attach waves-light waves-effect" %>
+<%= link_to 'Update', edit_idea_path(@idea), :class => "btn btn-flat waves-attach waves-light waves-effect" %> |
+<%= link_to 'Go Back', ideas_path, :class => "btn btn-flat waves-attach waves-light waves-effect" %>
