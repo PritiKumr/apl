@@ -14,5 +14,6 @@
  *= require_self
  *= require bootstrap.min
  */
-@import "../../../vendor/assets/components/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
-@import "../../../vendor/assets/components/bootstrap-sass/assets/stylesheets/bootstrap";
+ $icon-font-path: "bootstrap-sass-official/assets/fonts/bootstrap/";
+@import "../../../vendor/assets/stylesheets/bootstrap-sprockets";
+@import "../../../vendor/assets/stylesheets/bootstrap";
