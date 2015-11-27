@@ -32,6 +32,7 @@ class IdeasController < ApplicationController
     @idea = Idea.new(idea_params)
     @idea.user_id = current_user.id
     @idea.picture = params[:picture]
+    puts params[:picture].class
     
     respond_to do |format|
       if @idea.save
@@ -66,6 +67,10 @@ class IdeasController < ApplicationController
       format.html { redirect_to ideas_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def post_title_json
+      render json: Idea.where(:name => params[:query]).map {|post| {name: post.name, value: post.id}}
   end
 
   private

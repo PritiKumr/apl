@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'comments/index'
 
+
   devise_for :users
   resources :ideas
   # The priority is based upon order of creation: first created -> highest priority.
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
    root 'ideas#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+    get '/post_title_json' => 'ideas#post_title_json'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
